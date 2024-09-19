@@ -1,22 +1,26 @@
-require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
-const swaggerUI = require("swagger-ui-express");
-const YAML = require("yamljs");
+const { seedUser } = require("../Seed/User");
+const applyMiddleware = require("./middleware");
 
-const swaggerDoc = YAML.load("./swagger.yaml");
-const OpenApiValidator = require("express-openapi-validator");
-// const { seedUser } = require("./Seed/User");
 // express app
 const app = express();
-app.use(express.json());
-app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+applyMiddleware(app);
 
-app.use(
-  OpenApiValidator.middleware({
-    apiSpec: "./swagger.yaml",
-  })
-);
+app.use("/health", (req, res) => {
+  console.log(req.user);
+  res.status(200).json({
+    health: "Ok",
+  });
+});
+
+// Generate 404 Error
+// app.use("*", (req, res, next) => {
+//   const error = new Error("Requested resource not found");
+//   console.log(error)
+//   error.code = 404;
+//   error.error = "Not Found";
+//   next(error);
+// });
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
@@ -25,19 +29,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-let connectionURL = process.env.DB_CONNETION_URL;
-connectionURL = `${connectionURL}/${process.env.DB_NAME}`;
-console.log(connectionURL);
-mongoose
-  .connect(connectionURL)
-  .then(() => {
-    console.log("Database connection successful");
-    // seedUser(10);
-  })
-  .catch((err) => {
-    console.log("Database connection failed");
-    console.log("Error ", err.message);
-  });
-app.listen(4000, () => {
-  console.log("server is listening on port 4000");
-});
+module.exports = app;
