@@ -221,7 +221,7 @@ paths:
                 status:
                   type: string
                   format: enum['draft','published',]
-                  example: draf
+                  example: draft
               required: [title,body]
       responses:
         '201':
@@ -437,6 +437,10 @@ components:
     ArticleCreatedDTO:
       type: object
       properties:
+        code: 
+          type: integer
+          format: int32
+          example: 201
         message:
           type: string
           example: 'Article created successfully'
@@ -445,22 +449,18 @@ components:
         links:
             type: object
             properties:
-              code: 
-                type: integer
-                format: int32
-                example: 201
               self: 
                 type: string
                 format: url
-                example: '/article/1'
+                example: '/articles/1'
               auhtor: 
                 type: string
                 format: url
-                example: '/article/1/auhtor'
+                example: '/articles/1/auhtor'
               comments: 
                 type: string
                 format: url
-                example: '/article/1/comment'
+                example: '/articles/1/comments'
     ArticleUpdatedDTO:
       type: object
       properties:
@@ -665,11 +665,11 @@ components:
     sortTypeParam:
       in: query
       name: sort_type
-      description: type of sort (asc or desc)
+      description: type of sort (asc or dsc)
       schema:
         type: string
-        enum:  [asc,desc]
-        example:  desc
+        enum:  [asc,dsc]
+        example:  dsc
     sortByParam:
       in: query
       name: sort_by

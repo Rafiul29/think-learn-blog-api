@@ -8,6 +8,7 @@ const authenticate = require("./authenticate");
 
 const applyMiddleware = (app) => {
   app.use(express.json());
+  
   app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
   app.use(

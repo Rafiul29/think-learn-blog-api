@@ -1,6 +1,6 @@
 const { model, Schema } = require("mongoose");
 
-const CommentSchema = new Schema(
+const commentSchema = new Schema(
   {
     body: {
       type: String,
@@ -23,5 +23,5 @@ const CommentSchema = new Schema(
   { timestamps: true }
 );
 
-const Comment = model("Comment", CommentSchema);
+const Comment = model("Comment", commentSchema);
 module.exports = Comment;

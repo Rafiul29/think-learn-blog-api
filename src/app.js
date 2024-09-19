@@ -1,10 +1,12 @@
 const express = require("express");
 const { seedUser } = require("../Seed/User");
 const applyMiddleware = require("./middleware");
+const routers=require('./routes')
 
 // express app
 const app = express();
 applyMiddleware(app);
+app.use(routers)
 
 app.use("/health", (req, res) => {
   console.log(req.user);
@@ -22,7 +24,8 @@ app.use("/health", (req, res) => {
 //   next(error);
 // });
 
-app.use((err, req, res, next) => {
+app.use((err, _req, res, next) => {
+  console.log(err)
   res.status(err.status || 500).json({
     message: err.message,
     errors: err.errors,

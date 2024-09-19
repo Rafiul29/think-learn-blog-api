@@ -1,6 +1,6 @@
 const { model, Schema } = require("mongoose");
 
-const ArticleSchema = new Schema(
+const articleSchema = new Schema(
   {
     title: {
       type: String,
@@ -26,5 +26,5 @@ const ArticleSchema = new Schema(
   { timestamps: true }
 );
 
-const Article = model("Article", ArticleSchema);
+const Article = model("Article", articleSchema);
 module.exports = Article;
