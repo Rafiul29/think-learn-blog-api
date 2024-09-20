@@ -1,6 +1,6 @@
-const articleService = require("../../../../lib/article");
+const articleService = require("../../../../services/article");
 
-const create = async (req, res, next) => {
+const createItem = async (req, res, next) => {
   const { title, body, cover, status } = req.body;
   try {
     const article = await articleService.create({
@@ -30,4 +30,4 @@ const create = async (req, res, next) => {
   }
 };
 
-module.exports = create;
+module.exports = createItem;

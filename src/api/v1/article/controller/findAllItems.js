@@ -1,6 +1,8 @@
-const articleService = require("../../../../lib/article");
+const articleService = require("../../../../services/article");
 const { query } = require("../../../../utils");
 const defaults = require("../../../../config/defaults");
+
+
 
 const findAll = async (req, res, next) => {
   const page = +req.query.page || defaults.page;

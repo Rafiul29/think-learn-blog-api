@@ -298,7 +298,22 @@ paths:
         content:
           'application/json':
             schema:
-              $ref: '#/components/schemas/ArticleUpdatedDTO'
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: first article
+                body:
+                  type: string
+                  example: text                  
+                cover:
+                  type: string
+                  format: url
+                  example: https://s3.aws.com/firstblog/1232.jpg
+                status:
+                  type: string
+                  format: enum['draft','published']
+                  example: draft
                 
       responses:
         '200':

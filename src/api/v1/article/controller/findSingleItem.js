@@ -1,4 +1,4 @@
-const articleService = require("../../../../lib/article");
+const articleService = require("../../../../services/article");
 
 const findSingleItem = async(req,res,next) => {
   const id = req.params.id;
