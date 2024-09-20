@@ -11,7 +11,7 @@ router
   .route("/api/v1/articles/:id")
     .get(articleController.findSingleItem)
     .put(articleController.updateItem)
-    .patch()
-    .delete();
+    .patch(articleController.updateItemPatch)
+    .delete(articleController.removeItem);
 
 module.exports = router;

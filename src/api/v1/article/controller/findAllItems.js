@@ -25,7 +25,7 @@ const findAll = async (req, res, next) => {
     // response generations
 
     // data transformation
-    const data = query.getTransformedItems({items:articles,selection:["id",'title','cover','author','updatedAt','createdAt'],path:'/articles'})
+    const data = query.getTransformedItems({items:articles,selection:["id",'title','cover','author','updatedAt','createdAt','body'],path:'/articles'})
 
 
     // pagination

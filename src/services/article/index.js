@@ -96,6 +96,7 @@ const findSingleItem = async ({ id, expand = "" }) => {
     await article.populate({
       path: "author",
       select: "name",
+      strictPopulate:false
     });
   }
 
@@ -103,6 +104,7 @@ const findSingleItem = async ({ id, expand = "" }) => {
     console.log("lis");
     await article.populate({
       path: "comments",
+      strictPopulate:false
     });
   }
 
@@ -124,14 +126,12 @@ const updateOrCreate = async (
 ) => {
   const article = await Article.findById(id);
   if (!article) {
-
     const article = await create({ title, body, cover, status, author });
 
     return {
       article,
       status: 201,
     };
-
   }
 
   const payload = {
@@ -151,10 +151,68 @@ const updateOrCreate = async (
   };
 };
 
+const updatePropertices = async (id, { title, body, cover, status }) => {
+  if (!id) {
+    throw new Error("Id is required");
+  }
+
+  const article = await Article.findById(id);
+
+  if (!article) {
+    throw notFound("Article Not Found");
+  }
+
+  const payload = {
+    title,
+    body,
+    cover,
+    status,
+  };
+
+  // first way
+  // article.title = title ?? article.title;
+  // article.body = body ?? article.body;
+  // article.cover = cover ?? article.cover;
+  // article.status = status ?? article.status;
+
+  // second way
+  Object.keys(payload).forEach((key)=>{
+    article[key]=payload[key] ?? article[key]
+  })
+
+  await article.save();
+
+  return {
+    ...article._doc,
+    id: article.id,
+  };
+};
+
+const removeItem=async(id)=>{
+  if (!id) {
+    throw new Error("Id is required");
+  }
+
+  const article = await Article.findById(id);
+
+  if (!article) {
+    throw notFound("Article Not Found");
+  }
+
+  // TODO:
+  // Asynchronously delete all associated comments
+  // Commnet.deleteMany(article:id)
+  
+  return Article.findByIdAndDelete(id)
+   
+}
+
 module.exports = {
   findAll,
   create,
   count,
   findSingleItem,
   updateOrCreate,
+  updatePropertices,
+  removeItem
 };
