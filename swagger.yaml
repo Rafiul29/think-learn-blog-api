@@ -247,7 +247,7 @@ paths:
           description: exapnd author and comment object
           schema:
             type: string
-            example: author,comment
+            example: 'author,comments'
       responses:
         '200':
           description: Single Article view
@@ -690,6 +690,5 @@ components:
         required: true
         description: Article ID
         schema:
-          type: integer
-          format: int32
-          example: 1
+          type: string
+          example: '66ec46b83b257ab59d5b8d6d'

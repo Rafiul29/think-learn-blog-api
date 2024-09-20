@@ -21,6 +21,10 @@ const articleSchema = new Schema(
     author:{
       type:Schema.Types.ObjectId,
       ref:'User'
+    },
+    comments:{
+      type:Schema.Types.ObjectId,
+      ref:'Comment'
     }
   },
   { timestamps: true }
