@@ -6,7 +6,7 @@ const removeItem = async (req, res, next) => {
   try {
     const data = await articleService.removeItem(id);
 
-    console.log(data)
+  
     res.status(204).json({ message: "Article delete successfully" });
 
   } catch (e) {

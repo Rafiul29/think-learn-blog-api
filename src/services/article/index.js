@@ -60,6 +60,7 @@ const create = async ({
     error.status = 400;
     throw error;
   }
+
   const article = new Article({
     title,
     body,
@@ -96,7 +97,7 @@ const findSingleItem = async ({ id, expand = "" }) => {
     await article.populate({
       path: "author",
       select: "name",
-      strictPopulate:false
+      strictPopulate: false,
     });
   }
 
@@ -104,7 +105,7 @@ const findSingleItem = async ({ id, expand = "" }) => {
     console.log("lis");
     await article.populate({
       path: "comments",
-      strictPopulate:false
+      strictPopulate: false,
     });
   }
 
@@ -176,9 +177,9 @@ const updatePropertices = async (id, { title, body, cover, status }) => {
   // article.status = status ?? article.status;
 
   // second way
-  Object.keys(payload).forEach((key)=>{
-    article[key]=payload[key] ?? article[key]
-  })
+  Object.keys(payload).forEach((key) => {
+    article[key] = payload[key] ?? article[key];
+  });
 
   await article.save();
 
@@ -188,7 +189,7 @@ const updatePropertices = async (id, { title, body, cover, status }) => {
   };
 };
 
-const removeItem=async(id)=>{
+const removeItem = async (id) => {
   if (!id) {
     throw new Error("Id is required");
   }
@@ -202,10 +203,25 @@ const removeItem=async(id)=>{
   // TODO:
   // Asynchronously delete all associated comments
   // Commnet.deleteMany(article:id)
-  
-  return Article.findByIdAndDelete(id)
-   
-}
+
+  return await Article.findByIdAndDelete(id);
+};
+
+const checkOwnerShip = async ({ reqsourceId, userId }) => {
+
+  const article = await Article.findById(reqsourceId);
+
+  if (!article) {
+    throw notFound("Article Not Found");
+  }
+
+  if (article?.author?.toString() === userId) {
+    
+    return true;
+  } else {
+    return false;
+  }
+};
 
 module.exports = {
   findAll,
@@ -214,5 +230,6 @@ module.exports = {
   findSingleItem,
   updateOrCreate,
   updatePropertices,
-  removeItem
+  removeItem,
+  checkOwnerShip,
 };

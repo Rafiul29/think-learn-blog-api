@@ -5,7 +5,6 @@ const swaggerUI = require("swagger-ui-express");
 const YAML = require("yamljs");
 const swaggerDoc = YAML.load("./swagger.yaml");
 const OpenApiValidator = require("express-openapi-validator");
-const authenticate = require("./authenticate");
 
 
 const applyMiddleware = (app) => {
@@ -20,8 +19,6 @@ const applyMiddleware = (app) => {
       apiSpec: "./swagger.yaml",
     })
   );
-
-  app.use(authenticate);
 };
 
 module.exports = applyMiddleware;
