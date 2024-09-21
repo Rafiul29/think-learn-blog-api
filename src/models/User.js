@@ -4,8 +4,8 @@ const userSchema = new Schema(
   {
     name: {
       type: String,
-      maxLength: 50,
-      minLength: 5,
+      minLength: [5, "User name min length 5 characters"],
+      maxLength: [50, "User name max length 50 characters"],
       required: [true, "User name is required"],
     },
     email: {
@@ -13,6 +13,7 @@ const userSchema = new Schema(
       required: [true, "Email name is required"],
       trim: true,
       unique: true,
+      lowercase: true,
       validate: {
         validator: function (v) {
           return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
@@ -24,8 +25,8 @@ const userSchema = new Schema(
       type: String,
       required: [true, "User password is required"],
       minLength: [
-        6,
-        "The length of user password can be minimum 6  characters",
+        8,
+        "The length of user password can be minimum 8  characters",
       ],
     },
     role: {

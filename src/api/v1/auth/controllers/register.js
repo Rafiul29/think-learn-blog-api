@@ -26,7 +26,7 @@ const register = async (req, res, next) => {
       message: "Registration successful",
       data: {access_token:accessToken},
       links: {
-        self: "/auth/register",
+        self: req.url,
         signin: "/auth/login",
       },
     };
