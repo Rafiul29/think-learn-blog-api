@@ -6,11 +6,6 @@ const commentSchema = new Schema(
       type: String,
       required: [true, "body is required"],
     },
-    status: {
-      type: String,
-      enum: ["public", "private"],
-      default: "public",
-    },
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",
@@ -19,6 +14,7 @@ const commentSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Article",
     },
+    parent: { type: Schema.Types.ObjectId, ref: "Comment", default: null }, // For replies
   },
   { timestamps: true }
 );
