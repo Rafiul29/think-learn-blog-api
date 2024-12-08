@@ -1,7 +1,7 @@
 {
   "name": "thinklearn-my-blog-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./src/index.js",
@@ -26,5 +26,8 @@
   "devDependencies": {
     "@faker-js/faker": "^9.0.1",
     "nodemon": "^3.1.5"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
