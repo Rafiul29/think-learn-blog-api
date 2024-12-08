@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js",
-    "dev": "nodemon --ignore  --exec node ./src/index.js"
+    "dev": "nodemon --ignore  --exec node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["mern stack"],
   "author": "",
   "license": "ISC",
   "description": "",
@@ -28,6 +28,11 @@
     "nodemon": "^3.1.5"
   },
   "engines": {
-    "node": "=18"
+    "node": ">=18"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": ".husky/pre-commit"
+    }
   }
 }
