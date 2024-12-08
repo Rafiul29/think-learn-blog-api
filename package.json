@@ -4,7 +4,7 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/index.js",
+    "start": "node ./src/index.js",
     "dev": "nodemon --ignore  --exec node ./src/index.js"
   },
   "keywords": [],
@@ -28,6 +28,6 @@
     "nodemon": "^3.1.5"
   },
   "engines": {
-    "node": ">=18"
+    "node": "=18"
   }
 }
