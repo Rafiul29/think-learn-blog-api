@@ -1,5 +1,4 @@
 const express = require("express");
-const { seedUser } = require("../Seed/User");
 const applyMiddleware = require("./middleware");
 const routers=require('./routes')
 
