@@ -9,12 +9,10 @@ info:
     email: rafiulislamcse29@gmail.com
 
 servers:
-  - description: Host api
-    url: https://think-learn-blog-api.onrender.com
   - description: Dev v1
     url: http://localhost:4000/api/v1
-  - description: Dev v2
-    url: http://localhost:4000/api/v2
+  - description: api 
+    url: https://think-learn-blog-api.onrender.com
     
 tags: 
   - name: Auth
