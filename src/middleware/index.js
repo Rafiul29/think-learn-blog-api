@@ -6,7 +6,6 @@ const YAML = require("yamljs");
 const swaggerDoc = YAML.load("./swagger.yaml");
 const OpenApiValidator = require("express-openapi-validator");
 
-
 const applyMiddleware = (app) => {
 
   app.use(express.json());
@@ -16,7 +15,7 @@ const applyMiddleware = (app) => {
 
   app.use(
     OpenApiValidator.middleware({
-      apiSpec: "./swagger.yaml",
+      apiSpec: "swagger.yaml",
     })
   );
 };
