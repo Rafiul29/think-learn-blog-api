@@ -17,7 +17,7 @@ const applyMiddleware = (app) => {
 
   app.use(
     OpenApiValidator.middleware({
-      apiSpec: path.resolve(__dirname, "./swagger.yaml"),
+      apiSpec: path.resolve(__dirname, "../../swagger.yaml"),
       // apiSpec: "./swagger.yaml",
     })
   );
