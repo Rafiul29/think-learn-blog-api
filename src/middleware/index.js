@@ -8,7 +8,7 @@ const path = require("path");
 
 const swaggerDoc = YAML.load(path.resolve(__dirname,'../../swagger.yaml'));
 // const swaggerDoc = YAML.load("./swagger.yaml");
-console.log(swaggerDoc)
+
 const applyMiddleware = (app) => {
   app.use(express.json());
   app.use(morgan("dev"));

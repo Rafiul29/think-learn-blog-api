@@ -7,6 +7,13 @@ const app = express();
 applyMiddleware(app);
 app.use(routers)
 
+app.use("/", (req, res) => {
+  console.log(req.user);
+  res.status(200).json({
+    health: "Welcome to  Server",
+  });
+});
+
 app.use("/health", (req, res) => {
   console.log(req.user);
   res.status(200).json({
